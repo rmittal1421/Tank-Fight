@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Tank {
     public static final int minimumCellsForTank = 4;
+    public static final int completeTank = 4;
     private char nameOfTank;
     private int cellsRemaining;
     private boolean stateOfTank;
@@ -40,14 +41,15 @@ public class Tank {
     public void placeItself(List<Cell> unusedCells) {
         List<Cell> freeNeighbours = new ArrayList<>();
         int cellsInTank = 0;
-        int randCell;
+        int randCellIndex;
         Cell inTank;
 
         Random rand = new Random();
 
         do {
-            randCell = rand.nextInt(unusedCells.size()-1);
-            inTank = unusedCells.get(randCell);
+            randCellIndex = rand.nextInt(unusedCells.size()-1);
+            inTank = unusedCells.get(randCellIndex);
+            unusedCells.remove(randCellIndex);
             cellsInTank++;
             inTank.setOccupied(true);
             pointsOfTank.add(inTank.getLocationOfCell());
@@ -58,15 +60,18 @@ public class Tank {
                 //because it has no neighbour with whom I can connect.
                 //Hence I will remove it from the list which contains all the cells which are unused because I cant use it.
                 cellsInTank--;
+                pointsOfTank.remove(inTank.getLocationOfCell());
                 inTank.setOccupied(false);
             }
-            unusedCells.remove(randCell);
-
         } while((cellsInTank == 0) && !(unusedCells.size() < minimumCellsForTank));
 
-        while (cellsInTank != 4) {
-            randCell = rand.nextInt(freeNeighbours.size()-1);
-            inTank = freeNeighbours.get(randCell);
+//        if ((cellsInTank == 0) && (unusedCells.size() < minimumCellsForTank)) {
+//            exitTheProgram();
+//        }
+
+        while (cellsInTank != 4 && (freeNeighbours.size() != 0)) {
+            randCellIndex = rand.nextInt(freeNeighbours.size());
+            inTank = freeNeighbours.get(randCellIndex);
             unusedCells.remove(inTank);
             freeNeighbours.remove(inTank);
             inTank.setOccupied(true);
@@ -75,9 +80,9 @@ public class Tank {
             fillFreeNeighbours(inTank, freeNeighbours);
         }
 
-        if (cellsInTank == 4) {
+        if (cellsInTank == completeTank) {
             for (Point point : pointsOfTank) {
-                System.out.println(this.nameOfTank + " " + point.getRowNo() + "," + point.getColNo());
+                //System.out.println(this.nameOfTank + " " + (point.getRowNo()+1) + "," + (point.getColNo()+1));
                 field.getCell(point).setName(this.nameOfTank);
             }
         }
@@ -99,24 +104,24 @@ public class Tank {
         //Case3: where the above cell is going out-of-bound
         //Case4: where the below cell is going out-of-bound
 
-        int lastIndex = freeNeighbours.size();
-
         if (field.locationExists(leftPoint)) {
-            freeNeighbours.add(field.getCell(leftPoint));
+            if (field.getCell(leftPoint).isEmpty()) {
+                freeNeighbours.add(field.getCell(leftPoint));
+            }
         }
         if (field.locationExists(rightPoint)) {
-            freeNeighbours.add(field.getCell(rightPoint));
+            if (field.getCell(rightPoint).isEmpty()) {
+                freeNeighbours.add(field.getCell(rightPoint));
+            }
         }
         if (field.locationExists(abovePoint)) {
-            freeNeighbours.add(field.getCell(abovePoint));
+            if (field.getCell(abovePoint).isEmpty()) {
+                freeNeighbours.add(field.getCell(abovePoint));
+            }
         }
         if (field.locationExists(belowPoint)) {
-            freeNeighbours.add(field.getCell(belowPoint));
-        }
-
-        for (int i = lastIndex; i < freeNeighbours.size(); i++) {
-            if (freeNeighbours.get(i).isOccupied()) {
-                freeNeighbours.remove(i);
+            if (field.getCell(belowPoint).isEmpty()) {
+                freeNeighbours.add(field.getCell(belowPoint));
             }
         }
     }

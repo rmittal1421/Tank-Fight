@@ -30,6 +30,10 @@ public class Board {
 
         char tankName = 'A';
         for (int i = 0; i < numberOfTanks; i++) {
+//            System.out.println("While placing tank " + tankName + " unused cells are:");
+//            for (int j = 0; j < unusedCells.size(); j++) {
+//                System.out.println((unusedCells.get(j).getLocationOfCell().getRowNo()+1)+","+(unusedCells.get(j).getLocationOfCell().getColNo()+1));
+//            }
             placeTank (unusedCells, tankName);
             tankName++;
         }

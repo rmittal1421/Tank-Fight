@@ -6,10 +6,6 @@ public class Cell {
     private char name;
     private boolean occupied;
     private Point locationOfCell;
-    private int rowNumber;
-    private int columnNumber;
-
-    //Optional<Tank> inTank = Optional.empty();
 
     public Cell (int rowNumber, int columnNumber) {
         name = '~';
@@ -19,9 +15,6 @@ public class Cell {
         occupied = false;
 
         locationOfCell = new Point(rowNumber, columnNumber);
-
-//        this.rowNumber = rowNumber;
-//        this.columnNumber = columnNumber;
     }
 
     public Point getLocationOfCell() {
@@ -46,13 +39,5 @@ public class Cell {
 
     public boolean isEmpty() {
         return !occupied;
-    }
-
-    public int getRowNumber() {
-        return rowNumber;
-    }
-
-    public int getColumnNumber() {
-        return columnNumber;
     }
 }
