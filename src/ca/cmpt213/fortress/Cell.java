@@ -1,10 +1,15 @@
 package ca.cmpt213.fortress;
 
+import java.util.Optional;
+
 public class Cell {
     private char name;
     private boolean occupied;
+    private Point locationOfCell;
     private int rowNumber;
     private int columnNumber;
+
+    //Optional<Tank> inTank = Optional.empty();
 
     public Cell (int rowNumber, int columnNumber) {
         name = '~';
@@ -13,14 +18,15 @@ public class Cell {
         // occupied is true which means that the cell is occupied by a tank
         occupied = false;
 
-        this.rowNumber = rowNumber;
-        this.columnNumber = columnNumber;
+        locationOfCell = new Point(rowNumber, columnNumber);
+
+//        this.rowNumber = rowNumber;
+//        this.columnNumber = columnNumber;
     }
 
-//    public Cell(char name, boolean occupied) {
-//        this.name = name;
-//        this.occupied = occupied;
-//    }
+    public Point getLocationOfCell() {
+        return locationOfCell;
+    }
 
     public char getName() {
         return name;
@@ -30,7 +36,7 @@ public class Cell {
         this.name = name;
     }
 
-    public boolean getOccupied() {
+    public boolean isOccupied() {
         return occupied;
     }
 
