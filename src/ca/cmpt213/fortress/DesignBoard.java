@@ -4,6 +4,7 @@ public class DesignBoard {
     private int rows;
     private int columns;
     private Cell[][] newBoard;
+    private int numberOfAliveTanks;
 
     public int getColumns() {
         return columns;
@@ -14,9 +15,19 @@ public class DesignBoard {
         return rows;
     }
 
+    public int getNumberOfAliveTanks() {
+        return numberOfAliveTanks;
+    }
+
+    public void increementNoOfAliveTank () {
+        this.numberOfAliveTanks++;
+
+    }
+
     public DesignBoard(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
+        this.numberOfAliveTanks = 0;
 
         newBoard = new Cell[rows][columns];
 

@@ -33,31 +33,24 @@ public class Board {
         char tankName = 'A';
         for (int i = 0; i < numberOfTanks; i++) {
             if (ableToMakeBoard == true) {
-                placeTank (unusedCells, tankName);
+                addTank(unusedCells, tankName);
                 tankName++;
             }
             else {
                 break;
             }
         }
-    }
 
-    public int getColumns() {
-        return columns;
-    }
-
-    public int getRows() {
-
-        return rows;
+        this.numberOfAliveTanks = this.field.getNumberOfAliveTanks();
     }
 
     public int getNumberOfUnusedCells() {
         return numberOfUnusedCells;
     }
 
-    private void placeTank (List<Cell> unusedCells, char tankName) {
-        Tank tank = new Tank (field, tankName);
-        if (!(tank.placeItself (unusedCells))) {
+    private void addTank(List<Cell> unusedCells, char tankName) {
+        Tank tank = new Tank (field, tankName, unusedCells);
+        if (tank.placed == false) {
             ableToMakeBoard = false;
         }
     }
