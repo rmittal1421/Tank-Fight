@@ -10,6 +10,7 @@ public class Board {
     private int numberOfTanks;
     private int numberOfAliveTanks;
     private int numberOfUnusedCells;
+    public boolean ableToMakeBoard;
 
     public Board (int noOfRows, int noOfColumns, int numberOfTanks) {
         this.rows = noOfRows;
@@ -18,6 +19,7 @@ public class Board {
         this.field = new DesignBoard(noOfRows, noOfColumns);
         this.numberOfAliveTanks = 0;
         this.numberOfUnusedCells = rows * columns;
+        this.ableToMakeBoard = true;
 
         // Creating a list which contains all the cells which have not been assigned to any tank so far.
         List<Cell> unusedCells = new ArrayList<>();
@@ -30,12 +32,13 @@ public class Board {
 
         char tankName = 'A';
         for (int i = 0; i < numberOfTanks; i++) {
-//            System.out.println("While placing tank " + tankName + " unused cells are:");
-//            for (int j = 0; j < unusedCells.size(); j++) {
-//                System.out.println((unusedCells.get(j).getLocationOfCell().getRowNo()+1)+","+(unusedCells.get(j).getLocationOfCell().getColNo()+1));
-//            }
-            placeTank (unusedCells, tankName);
-            tankName++;
+            if (ableToMakeBoard == true) {
+                placeTank (unusedCells, tankName);
+                tankName++;
+            }
+            else {
+                break;
+            }
         }
     }
 
@@ -54,7 +57,9 @@ public class Board {
 
     private void placeTank (List<Cell> unusedCells, char tankName) {
         Tank tank = new Tank (field, tankName);
-        tank.placeItself (unusedCells);
+        if (!(tank.placeItself (unusedCells))) {
+            ableToMakeBoard = false;
+        }
     }
 
     // This functions give out the Cell which is sitting at index (i,j) in the grid of the board.

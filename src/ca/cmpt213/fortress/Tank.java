@@ -38,7 +38,7 @@ public class Tank {
         this.stateOfTank = stateOfTank;
     }
 
-    public void placeItself(List<Cell> unusedCells) {
+    public boolean placeItself(List<Cell> unusedCells) {
         List<Cell> freeNeighbours = new ArrayList<>();
         int cellsInTank = 0;
         int randCellIndex;
@@ -47,7 +47,10 @@ public class Tank {
         Random rand = new Random();
 
         do {
-            randCellIndex = rand.nextInt(unusedCells.size()-1);
+            if (unusedCells.size() == 0) {
+                return false;
+            }
+            randCellIndex = rand.nextInt(unusedCells.size());
             inTank = unusedCells.get(randCellIndex);
             unusedCells.remove(randCellIndex);
             cellsInTank++;
@@ -65,11 +68,11 @@ public class Tank {
             }
         } while((cellsInTank == 0) && !(unusedCells.size() < minimumCellsForTank));
 
-//        if ((cellsInTank == 0) && (unusedCells.size() < minimumCellsForTank)) {
-//            exitTheProgram();
-//        }
+        if ((cellsInTank == 0) && (unusedCells.size() < minimumCellsForTank)) {
+            return false;
+        }
 
-        while (cellsInTank != 4 && (freeNeighbours.size() != 0)) {
+        while ((cellsInTank != completeTank) && (freeNeighbours.size() != 0)) {
             randCellIndex = rand.nextInt(freeNeighbours.size());
             inTank = freeNeighbours.get(randCellIndex);
             unusedCells.remove(inTank);
@@ -86,9 +89,21 @@ public class Tank {
                 field.getCell(point).setName(this.nameOfTank);
             }
         }
+        else if ((cellsInTank != completeTank) && (freeNeighbours.size() == 0)) {
+            cellsInTank = 0;
+            for (Point point : pointsOfTank) {
+                field.getCell(point).setOccupied(false);
+            }
+            pointsOfTank.clear();
+            if (unusedCells.size() != 0) {
+                return placeItself(unusedCells);
+            }
+            else {
+                return false;
+            }
+        }
 
-//        inTank.setOccupied(true);
-//        inTank.setName(tankName);
+        return true;
     }
 
     private void fillFreeNeighbours(Cell inTank, List<Cell> freeNeighbours) {

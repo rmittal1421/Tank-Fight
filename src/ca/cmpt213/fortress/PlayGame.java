@@ -9,6 +9,12 @@ class PlayGame {
         int columns = 4;
         Board board = new Board (rows, columns, tanks);
 
+        if (!board.ableToMakeBoard) {
+            System.out.println("Too many tanks to be placed on the board. Retry with lesser number of boards");
+            System.out.println();
+            System.exit(-1);
+        }
+
         System.out.print("\t");
         for (int i = 1; i <= columns; i++) {
             System.out.print(i + "\t");
