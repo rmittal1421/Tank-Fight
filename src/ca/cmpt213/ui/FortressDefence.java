@@ -1,5 +1,11 @@
 package ca.cmpt213.ui;
 
+/**
+ * Fortress Defence class contains the main class which takes the arguments from the user and
+ * designs and play the game accordingly.
+ * @param array of strings
+ * @author vakansha
+ */
 public class FortressDefence {
     public static void main (String[] args) {
 

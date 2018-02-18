@@ -1,5 +1,10 @@
 package ca.cmpt213.fortress;
 
+/**
+ * Point is as simple as it's name. It is created to store vertices of a cell on a board
+ * Every cell is addressed with the help of this class.
+ * @author rmittal
+ */
 public class Point {
     private int rowNo;
     private int colNo;

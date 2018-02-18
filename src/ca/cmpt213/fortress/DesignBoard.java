@@ -1,5 +1,11 @@
 package ca.cmpt213.fortress;
 
+/**
+ * DesignBoard is the helping class which helps in building the board or given number of rows and columns.
+ * It makes a 2-D array of Cells and do nothing with that.
+ * This class is simply designed to design the board which is the basic requirement of this game.
+ * @author vakansha
+ */
 public class DesignBoard {
     private int rows;
     private int columns;

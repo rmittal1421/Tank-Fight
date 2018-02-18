@@ -3,6 +3,12 @@ package ca.cmpt213.ui;
 import ca.cmpt213.fortress.Point;
 import java.util.Scanner;
 
+/**
+ * InputFromUser class is specially designed to take the inputs from the user which is used to generate the
+ * point where the user wants to shoot. It uses a scanner class and has a function called askTarget(Scanner)
+ * which returns the point where the user is aiming at.
+ * @author vakansha, rmittal
+ */
 public class InputFromUser {
     private Point target;
 
@@ -14,6 +20,14 @@ public class InputFromUser {
         return target;
     }
 
+    /**
+     * askTarget is asking the user to enter the location where he wants to hit
+     * If the user enters an invalid position, this function is dealing with that too.
+     * Since, the user enters the location as a string, this function reads the rowNo and colNo
+     * and create a Point object and returns it.
+     * @param scan
+     * @return
+     */
     public Point askTarget(Scanner scan) {
         final int maxInputLength = 3;
         final int whenColumnbelow10 = 2;

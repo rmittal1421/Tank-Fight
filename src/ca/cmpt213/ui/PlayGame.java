@@ -1,9 +1,15 @@
 package ca.cmpt213.ui;
 
 import ca.cmpt213.fortress.*;
-
 import java.util.Scanner;
 
+/**
+ * PlayGame is the class where the actual game is played.
+ * It's object is instantiated in FortressDefence class and the rest is done inside this class.
+ * It makes use of InputFromUser class and ca.cmpt213.fortress package which basically has the
+ * design of the game.
+ * @author rmittal, vakansha
+ */
 class PlayGame {
     private int rows = 4;
     private int columns = 4;
@@ -16,6 +22,14 @@ class PlayGame {
         return board;
     }
 
+    /**
+     * This is the constructor of this class which takes an argument which is the number of tanks to be placed on the
+     * board.
+     * This creates a new board, adds the possible number of tanks.
+     * Continues the game if all the tanks are placed.
+     * And exists the system if it is unable to put all the tanks.
+     * @param numberOfTanks
+     */
     public PlayGame(int numberOfTanks) {
         this.numberOfTanks = numberOfTanks;
         board = new Board(rows, columns, numberOfTanks);
@@ -28,6 +42,12 @@ class PlayGame {
         }
     }
 
+    /**
+     * play is a member function of this class which starts the game if all the tanks are placed.
+     * This function make use of an object of InputFromUser class.
+     * It prints out everything to be dispayed while the game goes on.
+     * This function interacs with the game interface.
+     */
     public void play () {
         Scanner scan = new Scanner(System.in);
         Point target;

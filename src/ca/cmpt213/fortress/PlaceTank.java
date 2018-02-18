@@ -1,5 +1,19 @@
 package ca.cmpt213.fortress;
 
+/**
+ * PlaceTank is the class which handles the most trickiest part of the assignment which is placing the tanks
+ * When a new Tank object is created, an object of this class is made which places that particular tank on
+ * the board.
+ * How does it work?
+ * It has a list of all the unused cells which are basically free i.e. it doesn't contain any tank as of now
+ * It randomly chooses any one of those cells and declare it as its first cell and start finding the rest of the cells
+ * It has another list called freeNeighbours which starts adding the left, right, above and below neighbours
+ * of the randomly selected cells.
+ * Then rest of the cells are chosen from this list and it is updated everytime a cell is added.
+ * By this way, we keep out old neighbours intact too.
+ * @author vakansha, rmittal
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -21,6 +35,7 @@ public class PlaceTank {
         }
     }
 
+    //Working explained in JAVADOC for the class.
     public boolean placeItself(List<Cell> unusedCells) {
         List<Cell> freeNeighbours = new ArrayList<>();
         int cellsInTank = 0;
@@ -89,6 +104,7 @@ public class PlaceTank {
         return true;
     }
 
+    //Working explained in JAVADOC for the class.
     private void fillFreeNeighbours(Cell inTank, List<Cell> freeNeighbours) {
         Point currentPoint = inTank.getLocationOfCell();
         Point leftPoint = new Point(currentPoint.getRowNo(), currentPoint.getColNo()-1);

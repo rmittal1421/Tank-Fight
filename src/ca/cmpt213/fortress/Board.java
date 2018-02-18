@@ -1,5 +1,15 @@
 package ca.cmpt213.fortress;
 
+/**
+ * Board class is the backbone of this game.
+ * It contains the actual board and the actual designed Board which actually contains all the tanks.
+ * This class has the responsibility of checking whether or not we were able to place all the tanks on the board
+ * It contains the list of the tanks that have been placed on the board.
+ * Most of the work has been done in the constructor of this class since we have to put all the tanks on the board
+ * as soon as we are asked to start the game.
+ * @author rmittal
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 

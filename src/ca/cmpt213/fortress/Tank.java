@@ -2,6 +2,12 @@ package ca.cmpt213.fortress;
 
 import java.util.List;
 
+/**
+ * Tank class makes an object which is actually a tank which is to be placed on the board
+ * This class's constructor assigns the name of the tank and contains a boolean placed which tells that
+ * whether or not this tank has been placed.
+ * @author vakansha
+ */
 public class Tank {
     private char nameOfTank;
     private int cellsRemaining;
@@ -46,6 +52,19 @@ public class Tank {
         this.stateOfTank = stateOfTank;
     }
 
+    /**
+     * damageByTank function explicitly returns the amount of damage a tank can do when it is alive or dead
+     * Since it contains a member variable CellsRemaining,
+     * it knows if it is alive or not and does the damage accordingly
+     *
+     * If the number of cells remamining:   Damage caused by that tank:
+     * 0                                :   0
+     * 1                                :   1
+     * 2                                :   2
+     * 3                                :   5
+     * 4                                :   20
+     * @return
+     */
     public int damageByTank () {
         final int damgageBy4 = 20;
         final int damgageBy3 = 5;
