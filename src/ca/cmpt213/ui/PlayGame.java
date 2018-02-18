@@ -87,7 +87,7 @@ class PlayGame {
         int i = 0;
         for (Tank tank : board.getListOfTanks()) {
             if (tank.getStateOfTank()) {
-                String output = "Alive tank #" + (i+1) + " of " + board.getListOfTanks().size() +
+                String output = "Alive tank #" + (i+1) + " of " + board.getNumberOfAliveTanks() +
                         " shot you for "+ tank.damageByTank() + "!";
                 System.out.println(output);
                 i++;
