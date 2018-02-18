@@ -49,6 +49,19 @@ public class Board {
         return numberOfUnusedCells;
     }
 
+    public List<Tank> getListOfTanks() {
+        return listOfTanks;
+    }
+
+    public void setNumberOfAliveTanks(int numberOfAliveTanks) {
+        this.numberOfAliveTanks = numberOfAliveTanks;
+    }
+
+    public int getNumberOfAliveTanks() {
+
+        return numberOfAliveTanks;
+    }
+
     private void addTank(List<Cell> unusedCells, char tankName) {
         Tank tank = new Tank (field, tankName, unusedCells);
         if (tank.placed == false) {
@@ -56,6 +69,8 @@ public class Board {
         }
         else {
             listOfTanks.add(tank);
+
+
         }
     }
 
@@ -67,5 +82,15 @@ public class Board {
 
     public Cell get (Point point) {
         return field.getCell(point);
+    }
+
+    public int updateAliveTank() {
+        int aliveTanks = listOfTanks.size();
+        for (Tank tank : listOfTanks) {
+            if (tank.getStateOfTank() == false) {
+                aliveTanks--;
+            }
+        }
+        return aliveTanks;
     }
 }

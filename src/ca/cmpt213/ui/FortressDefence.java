@@ -16,16 +16,16 @@ public class FortressDefence {
 
         PlayGame game = new PlayGame(numberOfTanks);
 
+        if (args.length == 2) {
+            game.printBoard();
+            game.printUserPower();
+        }
+
         System.out.println("Starting game with " + numberOfTanks + " tanks.\n");
         System.out.println("*****************************************");
         System.out.println(" Welcome to the game of Fortress Defence");
         System.out.println("created by Akansha Vaish and Raghav Mittal");
         System.out.println("*****************************************\n\n");
-
-        if (args.length == 2) {
-            game.printBoard();
-            game.printUserPower();
-        }
 
         game.play();
     }

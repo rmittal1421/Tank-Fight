@@ -30,8 +30,12 @@ public class Tank {
         return cellsRemaining;
     }
 
-    public void setCellsRemaining(int cellsRemaining) {
-        this.cellsRemaining = cellsRemaining;
+    public void decrementRemainingCells() {
+        this.cellsRemaining--;
+
+        if (this.cellsRemaining == 0) {
+            this.stateOfTank = false;
+        }
     }
 
     public boolean getStateOfTank() {

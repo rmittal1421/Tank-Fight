@@ -7,6 +7,10 @@ public class Player {
     private Point nextMove;
     public DesignBoard fortressMap;
 
+    public void setStructuralIntegrity(int structuralIntegrity) {
+        this.structuralIntegrity = structuralIntegrity;
+    }
+
     public Player(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
