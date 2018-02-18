@@ -1,10 +1,11 @@
 package ca.cmpt213.fortress;
 
 public class Player {
+    public static final int minimumStructuralIntegrity = 0;
     private int rows;
     private int columns;
     private int structuralIntegrity;
-    private Point nextMove;
+    public boolean outcomeOfShot;
     public DesignBoard fortressMap;
 
     public void setStructuralIntegrity(int structuralIntegrity) {
@@ -20,5 +21,31 @@ public class Player {
 
     public int getStructuralIntegrity() {
         return structuralIntegrity;
+    }
+
+    public void play (Board board, Point target) {
+        ShotAnalyzer shot = new ShotAnalyzer(board, target);
+        this.outcomeOfShot = shot.result();
+
+        shot.makeChangesInGame(this, outcomeOfShot);
+        updateUser (board, target);
+    }
+
+    private void updateUser(Board board, Point target) {
+        if (outcomeOfShot) {
+            fortressMap.getCell(target).setName('X');
+        } else {
+            fortressMap.getCell(target).setName(' ');
+        }
+
+        int damage = 0;
+        for (Tank tank : board.getListOfTanks()) {
+            damage += tank.damageByTank();
+        }
+
+        this.setStructuralIntegrity(this.getStructuralIntegrity() - damage);
+        if (this.getStructuralIntegrity() < minimumStructuralIntegrity) {
+            this.setStructuralIntegrity(minimumStructuralIntegrity);
+        }
     }
 }

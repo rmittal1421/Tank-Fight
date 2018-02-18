@@ -84,6 +84,10 @@ public class Board {
         return field.getCell(point);
     }
 
+    public DesignBoard getField() {
+        return field;
+    }
+
     public int updateAliveTank() {
         int aliveTanks = listOfTanks.size();
         for (Tank tank : listOfTanks) {
@@ -92,5 +96,6 @@ public class Board {
             }
         }
         return aliveTanks;
+
     }
 }

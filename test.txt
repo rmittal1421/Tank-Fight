@@ -1,57 +1,39 @@
-//            System.out.println("While placing tank " + tankName + " unused cells are:");
-//            for (int j = 0; j < unusedCells.size(); j++) {
-//                System.out.println((unusedCells.get(j).getLocationOfCell().getRowNo()+1)+","+(unusedCells.get(j).getLocationOfCell().getColNo()+1));
-//            }
+public void play () {
+        Scanner scan = new Scanner(System.in);
+        Point target;
 
-public static void main (String[] args) {
-        System.out.println("Welcome to the game of Fortress Defending by Akansha Vaish and Raghav Mittal");
+       while (user.getStructuralIntegrity() > 0 && board.getNumberOfAliveTanks() > 0) {
+            printUserBoard();
+            printUserPower();
 
-        int tanks = 10;
-        int rows = 10;
-        int columns = 10;
-        Board board = new Board (rows, columns, tanks);
-        Player user = new Player(rows, columns);
-
-        if (!board.ableToMakeBoard) {
-            System.out.println("Too many tanks to be placed on the board. Retry with lesser number of boards");
-            System.out.println();
-            System.exit(-1);
-        }
-
-        System.out.print("\t");
-        for (int i = 1; i <= columns; i++) {
-            System.out.print(i + "\t");
-        }
-        System.out.println();
-
-        char row = 'A';
-        for (int i = 0; i < rows; i++) {
-            System.out.print(row + "\t");
-            row++;
-            for (int j = 0; j < columns; j++) {
-                System.out.print(board.get(i,j).getName() + "\t");
+            target = (new InputFromUser(scan)).getTarget();
+            ShotAnalyzer shot = new ShotAnalyzer(board, target);
+            boolean result = shot.result();
+            if (result) {
+                System.out.println("Hit");
+                shot.makeChangesInGame(user, result);
             }
-            System.out.println();
-        }
-
-        System.out.println();
-        System.out.println("User's map:");
-        System.out.println();
-
-        System.out.print("\t");
-        for (int i = 1; i <= columns; i++) {
-            System.out.print(i + "\t");
-        }
-        System.out.println();
-
-        char Row = 'A';
-        for (int i = 0; i < rows; i++) {
-            System.out.print(Row + "\t");
-            Row++;
-            for (int j = 0; j < columns; j++) {
-                Point p = new Point(i,j);
-                System.out.print(user.fortressMap.getCell(p).getName() + "\t");
+            else {
+                System.out.println("Miss");
             }
-            System.out.println();
-        }
+            shot.makeChangesInUser(user, result);
+            //break;
+       }
+
+       if (board.getNumberOfAliveTanks() == 0) {
+           printUserBoard();
+           printUserPower();
+           System.out.println("Congratulations! You won!\n");
+           printBoard();
+           printUserPower();
+           System.out.println("(Lower case tank letters are where you shot.)");
+       }
+       else if (user.getStructuralIntegrity() == 0){
+           printUserBoard();
+           printUserPower();
+           System.out.println("I am sorry, your fortress has been smashed!\n");
+           printBoard();
+           printUserPower();
+           System.out.println("(Lower case tank letters are where you shot.)");
+       }
     }

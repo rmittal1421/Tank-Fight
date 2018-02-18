@@ -17,7 +17,7 @@ public class PlaceTank {
         this.field = field;
 
         if (placeItself(unusedCells)) {
-            field.increementNoOfAliveTank();
+            field.incrementNoOfAliveTank();
         }
     }
 

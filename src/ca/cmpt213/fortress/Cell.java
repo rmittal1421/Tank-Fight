@@ -1,7 +1,5 @@
 package ca.cmpt213.fortress;
 
-import java.util.Optional;
-
 public class Cell {
     private char name;
     private boolean occupied;

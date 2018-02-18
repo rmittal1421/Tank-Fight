@@ -1,23 +1,30 @@
 package ca.cmpt213.ui;
 
-//import ca.cmpt213.fortress.*;
-
 public class FortressDefence {
     public static void main (String[] args) {
 
-        int numberOfTanks;
+        int numberOfTanks = 0;
 
         if (args.length == 0) {
             numberOfTanks = 5;
         }
+        else if (args.length >= 3) {
+            System.out.println("Too many arguments. Please enter 0, 1 or 2 arguments.");
+            System.exit(-1);
+        }
         else {
-            numberOfTanks  = Integer.parseInt(args[0]);
+            numberOfTanks = Integer.parseInt(args[0]);
+            if (numberOfTanks < 0) {
+                System.out.println("Unable to place -ve number of tanks.");
+                System.out.println("Replay with +ve number of tanks.");
+                System.exit(-1);
+            }
         }
 
         PlayGame game = new PlayGame(numberOfTanks);
 
         if (args.length == 2) {
-            game.printBoard();
+            game.printGameBoard(game.getBoard().getField());
             game.printUserPower();
         }
 
