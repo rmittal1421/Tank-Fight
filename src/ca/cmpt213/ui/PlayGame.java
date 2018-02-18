@@ -11,8 +11,8 @@ import java.util.Scanner;
  * @author rmittal, vakansha
  */
 class PlayGame {
-    private int rows = 4;
-    private int columns = 4;
+    private int rows = 10;
+    private int columns = 10;
     private int numberOfTanks;
     private Board board;
 

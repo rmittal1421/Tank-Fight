@@ -23,7 +23,7 @@ public class Player {
     public Player(int rows, int columns) {
         this.rows = rows;
         this.columns = columns;
-        structuralIntegrity = 100;
+        structuralIntegrity = 1500;
         fortressMap = new DesignBoard(rows, columns, '~');
     }
 
