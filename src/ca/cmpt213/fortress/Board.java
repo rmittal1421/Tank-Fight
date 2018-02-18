@@ -11,12 +11,13 @@ public class Board {
     private int numberOfAliveTanks;
     private int numberOfUnusedCells;
     public boolean ableToMakeBoard;
+    List<Tank> listOfTanks = new ArrayList<>();
 
     public Board (int noOfRows, int noOfColumns, int numberOfTanks) {
         this.rows = noOfRows;
         this.columns = noOfColumns;
         this.numberOfTanks = numberOfTanks;
-        this.field = new DesignBoard(noOfRows, noOfColumns);
+        this.field = new DesignBoard(noOfRows, noOfColumns, '.');
         this.numberOfAliveTanks = 0;
         this.numberOfUnusedCells = rows * columns;
         this.ableToMakeBoard = true;
@@ -53,11 +54,18 @@ public class Board {
         if (tank.placed == false) {
             ableToMakeBoard = false;
         }
+        else {
+            listOfTanks.add(tank);
+        }
     }
 
     // This functions give out the Cell which is sitting at index (i,j) in the grid of the board.
     // The name is set to "get" because in the main function, this is the most obvious function call one can make.
     public Cell get (int rowNum, int colNum) {
         return field.getCell(new Point(rowNum, colNum));
+    }
+
+    public Cell get (Point point) {
+        return field.getCell(point);
     }
 }

@@ -10,7 +10,6 @@ public class Tank {
 
     public Tank(DesignBoard field, char tankName, List<Cell> unusedCells) {
         this.nameOfTank = tankName;
-        this.cellsRemaining = 0;
         this.placed = true;
 
         // The state of tank is true if it is alive and is turned to false once it is shot by the user.
@@ -21,6 +20,9 @@ public class Tank {
 
         if (tanksAlreadyPlaced == field.getNumberOfAliveTanks()) {
             placed = false;
+        }
+        else {
+            this.cellsRemaining = 4;
         }
     }
 
@@ -38,5 +40,30 @@ public class Tank {
 
     public void setStateOfTank(boolean stateOfTank) {
         this.stateOfTank = stateOfTank;
+    }
+
+    public int damageByTank () {
+        final int damgageBy4 = 20;
+        final int damgageBy3 = 5;
+        final int damgageBy2 = 2;
+        final int damgageBy1 = 1;
+        final int damgageBy0 = 0;
+
+        int noOfCells = getCellsRemaining();
+        if (noOfCells == 4) {
+            return damgageBy4;
+        }
+        else if (noOfCells == 3) {
+            return damgageBy3;
+        }
+        else if (noOfCells == 2) {
+            return damgageBy2;
+        }
+        else if (noOfCells == 1) {
+            return damgageBy1;
+        }
+        else {
+            return damgageBy0;
+        }
     }
 }

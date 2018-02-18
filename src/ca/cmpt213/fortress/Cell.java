@@ -7,8 +7,8 @@ public class Cell {
     private boolean occupied;
     private Point locationOfCell;
 
-    public Cell (int rowNumber, int columnNumber) {
-        name = '~';
+    public Cell (int rowNumber, int columnNumber, char nameOfCell) {
+        this.name = nameOfCell;
 
         // occupied is false if it is free and ready to accommodate a tank
         // occupied is true which means that the cell is occupied by a tank

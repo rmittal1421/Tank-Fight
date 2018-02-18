@@ -15,16 +15,7 @@ public class DesignBoard {
         return rows;
     }
 
-    public int getNumberOfAliveTanks() {
-        return numberOfAliveTanks;
-    }
-
-    public void increementNoOfAliveTank () {
-        this.numberOfAliveTanks++;
-
-    }
-
-    public DesignBoard(int rows, int columns) {
+    public DesignBoard(int rows, int columns, char nameOfEachCell) {
         this.rows = rows;
         this.columns = columns;
         this.numberOfAliveTanks = 0;
@@ -33,9 +24,18 @@ public class DesignBoard {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                newBoard[i][j] = new Cell(i,j);
+                newBoard[i][j] = new Cell(i,j, nameOfEachCell);
             }
         }
+    }
+
+    public int getNumberOfAliveTanks() {
+        return numberOfAliveTanks;
+    }
+
+    public void increementNoOfAliveTank () {
+        this.numberOfAliveTanks++;
+
     }
 
     public Cell getCell(Point p) {
