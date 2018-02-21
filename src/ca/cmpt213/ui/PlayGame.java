@@ -60,10 +60,10 @@ class PlayGame {
             user.play (board, target);
 
             if (user.outcomeOfShot) {
-                System.out.println("Hit");
+                System.out.println("HIT!");
             }
             else {
-                System.out.println("Miss");
+                System.out.println("Miss.");
             }
             displayDamage(board);
        }

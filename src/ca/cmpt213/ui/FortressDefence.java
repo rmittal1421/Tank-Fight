@@ -30,10 +30,12 @@ public class FortressDefence {
         PlayGame game = new PlayGame(numberOfTanks);
 
         if (args.length == 2) {
+            System.out.println();
             game.printGameBoard(game.getBoard().getField());
             game.printUserPower();
         }
 
+        System.out.println("\n");
         System.out.println("Starting game with " + numberOfTanks + " tanks.\n");
         System.out.println("*****************************************");
         System.out.println(" Welcome to the game of Fortress Defence");
