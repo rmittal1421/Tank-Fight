@@ -1,6 +1,6 @@
 package ca.cmpt213.ui;
 
-import ca.cmpt213.fortress.Point;
+import ca.cmpt213.model.Point;
 import java.util.Scanner;
 
 /**
@@ -30,8 +30,9 @@ public class InputFromUser {
      */
     public Point askTarget(Scanner scan) {
         final int maxInputLength = 3;
-        final int whenColumnbelow10 = 2;
-        final int whenColumnIs10 = 3;
+        final int minimumInputLength = 2;
+        final int maximumInputLength = 3;
+        final int maximumColumnNo = 9;
 
         boolean validRow = false;
         boolean validColumn = false;
@@ -42,37 +43,30 @@ public class InputFromUser {
         System.out.print("Enter your move: ");
         String input = scan.nextLine();
 
-        if (input.equals("quit")) {
-            return new Point(rowNumber, columnNumber);
+        if (!(input.isEmpty())) {
+            input = input.trim();
+            input = input.toLowerCase();
         }
 
         if (!(input.isEmpty())) {
-            input = input.trim();
+            char[] charsInInput = input.toCharArray();
 
-            if (!(input.isEmpty())) {
-                char[] ch = input.toCharArray();
+            if (charsInInput.length <= maxInputLength) {
+                if (checkRowNumber(charsInInput[0])) {
+                    rowNumber = mapToInt(charsInInput[0], 'a');
+                    validRow = true;
+                }
 
-                if (ch.length <= maxInputLength) {
-                    if ((ch[0] >= 'a') && (ch[0] <= 'j')) {
-                        rowNumber = (int)(ch[0]) - 'a';
-                        validRow = true;
+                if (charsInInput.length == minimumInputLength) {
+                    if (checkColumnNumber (charsInInput[1]) ) {
+                        columnNumber = mapToInt(charsInInput[1], '1');
+                        validColumn = true;
                     }
-                    else if ((ch[0] >= 'A') && (ch[0] <= 'J')) {
-                        rowNumber = (int)(ch[0]) - 'A';
-                        validRow = true;
-                    }
-
-                    if (ch.length == whenColumnbelow10) {
-                        if ((ch[1] >= '1') && (ch[1] <= '9')) {
-                            columnNumber = (int)(ch[1]) - '1';
-                            validColumn = true;
-                        }
-                    }
-                    else if (ch.length == whenColumnIs10) {
-                        if ((ch[1] == '1') && (ch[2] == '0')) {
-                            columnNumber = 9;
-                            validColumn = true;
-                        }
+                }
+                else if (charsInInput.length == maximumInputLength) {
+                    if ((charsInInput[1] == '1') && (charsInInput[2] == '0')) {
+                        columnNumber = maximumColumnNo;
+                        validColumn = true;
                     }
                 }
             }
@@ -86,5 +80,17 @@ public class InputFromUser {
             System.out.println("Invalid target. Please enter a coordinate such as D10.");
             return askTarget(scan);
         }
+    }
+
+    public int mapToInt(char charInInput, char lowerBound) {
+        return ((int)charInInput - lowerBound);
+    }
+
+    public boolean checkRowNumber(char charInInput) {
+        return ((charInInput >= 'a') && (charInInput <= 'j'));
+    }
+
+    public boolean checkColumnNumber(char charInInput) {
+        return ((charInInput >= '1') && (charInInput <= '9'));
     }
 }

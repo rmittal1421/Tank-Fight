@@ -1,9 +1,9 @@
-package ca.cmpt213.fortress;
+package ca.cmpt213.model;
 
 import java.util.List;
 
 /**
- * Tank class makes an object which is actually a tank which is to be placed on the board
+ * Tank class makes an object which is actually a tank which is to be placed on the gameModel
  * This class's constructor assigns the name of the tank and contains a boolean placed which tells that
  * whether or not this tank has been placed.
  * @author vakansha
@@ -14,7 +14,7 @@ public class Tank {
     private boolean stateOfTank;
     public boolean placed;
 
-    public Tank(DesignBoard field, char tankName, List<Cell> unusedCells) {
+    public Tank(Board field, char tankName, List<Cell> unusedCells) {
         this.nameOfTank = tankName;
         this.placed = true;
 
@@ -48,10 +48,6 @@ public class Tank {
         return stateOfTank;
     }
 
-    public void setStateOfTank(boolean stateOfTank) {
-        this.stateOfTank = stateOfTank;
-    }
-
     /**
      * damageByTank function explicitly returns the amount of damage a tank can do when it is alive or dead
      * Since it contains a member variable CellsRemaining,
@@ -66,27 +62,27 @@ public class Tank {
      * @return
      */
     public int damageByTank () {
-        final int damgageBy4 = 20;
-        final int damgageBy3 = 5;
-        final int damgageBy2 = 2;
-        final int damgageBy1 = 1;
-        final int damgageBy0 = 0;
+        final int damageBy4 = 20;
+        final int damageBy3 = 5;
+        final int damageBy2 = 2;
+        final int damageBy1 = 1;
+        final int damageBy0 = 0;
 
         int noOfCells = getCellsRemaining();
         if (noOfCells == 4) {
-            return damgageBy4;
+            return damageBy4;
         }
         else if (noOfCells == 3) {
-            return damgageBy3;
+            return damageBy3;
         }
         else if (noOfCells == 2) {
-            return damgageBy2;
+            return damageBy2;
         }
         else if (noOfCells == 1) {
-            return damgageBy1;
+            return damageBy1;
         }
         else {
-            return damgageBy0;
+            return damageBy0;
         }
     }
 }

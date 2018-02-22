@@ -1,8 +1,8 @@
-package ca.cmpt213.fortress;
+package ca.cmpt213.model;
 
 /**
- * Cell class is the type defination of the what the board is made up of.
- * Every index of board has a cell which basically contains the name of the cell which tells that what is in that cell
+ * Cell class is the type defination of the what the gameModel is made up of.
+ * Every index of gameModel has a cell which basically contains the name of the cell which tells that what is in that cell
  * If there is a tank there, it stores the name of that tank
  * If it is fog there, it stores the sign of fog
  * If it has been hit, it contains a sign of X which means there was a tank here and it has been hit
@@ -35,10 +35,6 @@ public class Cell {
 
     public void setName(char name) {
         this.name = name;
-    }
-
-    public boolean isOccupied() {
-        return occupied;
     }
 
     public void setOccupied(boolean occupied) {

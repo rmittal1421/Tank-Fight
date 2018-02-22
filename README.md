@@ -4,4 +4,4 @@ If you pass 1 argument, it should be the number of tanks to be placed on the tan
 It must be an int greater than or equal to 0.
 
 Second argument is --cheat. 
-It will disclose the board with the tanks contained and hence you can shot on looking at the actual positions of the tanks.
+It will disclose the gameModel with the tanks contained and hence you can shot on looking at the actual positions of the tanks.

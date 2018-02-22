@@ -31,7 +31,7 @@ public class FortressDefence {
 
         if (args.length == 2) {
             System.out.println();
-            game.printGameBoard(game.getBoard().getField());
+            game.printGameBoard(game.getGameModel().getField());
             game.printUserPower();
         }
 

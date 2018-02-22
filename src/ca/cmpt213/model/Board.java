@@ -1,19 +1,19 @@
-package ca.cmpt213.fortress;
+package ca.cmpt213.model;
 
 /**
- * DesignBoard is the helping class which helps in building the board or given number of rows and columns.
+ * Board is the helping class which helps in building the gameModel or given number of rows and columns.
  * It makes a 2-D array of Cells and do nothing with that.
- * This class is simply designed to design the board which is the basic requirement of this game.
+ * This class is simply designed to design the gameModel which is the basic requirement of this game.
  * @author vakansha
  */
-public class DesignBoard {
+public class Board {
     private int rows;
     private int columns;
     private Cell[][] newBoard;
     private int numberOfAliveTanks;
 
 
-    public DesignBoard(int rows, int columns, char nameOfEachCell) {
+    public Board(int rows, int columns, char nameOfEachCell) {
         this.rows = rows;
         this.columns = columns;
         this.numberOfAliveTanks = 0;
@@ -33,7 +33,10 @@ public class DesignBoard {
 
     public void incrementNoOfAliveTank() {
         this.numberOfAliveTanks++;
+    }
 
+    public void decrementNoOfAliveTank() {
+        this.numberOfAliveTanks--;
     }
 
     public Cell getCell(Point p) {

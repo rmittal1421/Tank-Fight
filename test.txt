@@ -2,12 +2,12 @@ public void play () {
         Scanner scan = new Scanner(System.in);
         Point target;
 
-       while (user.getStructuralIntegrity() > 0 && board.getNumberOfAliveTanks() > 0) {
+       while (user.getStructuralIntegrity() > 0 && gameModel.getNumberOfAliveTanks() > 0) {
             printUserBoard();
             printUserPower();
 
             target = (new InputFromUser(scan)).getTarget();
-            ShotAnalyzer shot = new ShotAnalyzer(board, target);
+            ShotAnalyzer shot = new ShotAnalyzer(gameModel, target);
             boolean result = shot.result();
             if (result) {
                 System.out.println("Hit");
@@ -20,7 +20,7 @@ public void play () {
             //break;
        }
 
-       if (board.getNumberOfAliveTanks() == 0) {
+       if (gameModel.getNumberOfAliveTanks() == 0) {
            printUserBoard();
            printUserPower();
            System.out.println("Congratulations! You won!\n");

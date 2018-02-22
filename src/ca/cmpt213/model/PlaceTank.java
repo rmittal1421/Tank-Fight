@@ -1,9 +1,9 @@
-package ca.cmpt213.fortress;
+package ca.cmpt213.model;
 
 /**
  * PlaceTank is the class which handles the most trickiest part of the assignment which is placing the tanks
  * When a new Tank object is created, an object of this class is made which places that particular tank on
- * the board.
+ * the gameModel.
  * How does it work?
  * It has a list of all the unused cells which are basically free i.e. it doesn't contain any tank as of now
  * It randomly chooses any one of those cells and declare it as its first cell and start finding the rest of the cells
@@ -23,10 +23,10 @@ public class PlaceTank {
     public static final int completeTank = 4;
 
     private char nameOfTank;
-    private DesignBoard field;
+    private Board field;
     private List<Point> pointsOfTank = new ArrayList<>();
 
-    public PlaceTank(DesignBoard field, List<Cell> unusedCells, char nameOfTank) {
+    public PlaceTank(Board field, List<Cell> unusedCells, char nameOfTank) {
         this.nameOfTank = nameOfTank;
         this.field = field;
 
@@ -87,8 +87,8 @@ public class PlaceTank {
                 field.getCell(point).setName(this.nameOfTank);
             }
         }
+
         else if ((cellsInTank != completeTank) && (freeNeighbours.size() == 0)) {
-            cellsInTank = 0;
             for (Point point : pointsOfTank) {
                 field.getCell(point).setOccupied(false);
             }
@@ -100,7 +100,6 @@ public class PlaceTank {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -112,7 +111,7 @@ public class PlaceTank {
         Point abovePoint = new Point(currentPoint.getRowNo()-1, currentPoint.getColNo());
         Point belowPoint = new Point(currentPoint.getRowNo()+1, currentPoint.getColNo());
 
-        //Cases: I have to deal with all the cases where atRow or atColumn are going out of bound of the board,
+        //Cases: I have to deal with all the cases where atRow or atColumn are going out of bound of the gameModel,
         //Case1: where the left cell is going out-of-bound
         //Case2: where the right cell is going out-of-bound
         //Case3: where the above cell is going out-of-bound

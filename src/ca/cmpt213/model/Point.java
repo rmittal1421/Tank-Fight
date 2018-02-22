@@ -1,7 +1,7 @@
-package ca.cmpt213.fortress;
+package ca.cmpt213.model;
 
 /**
- * Point is as simple as it's name. It is created to store vertices of a cell on a board
+ * Point is as simple as it's name. It is created to store vertices of a cell on a gameModel
  * Every cell is addressed with the help of this class.
  * @author rmittal
  */
@@ -18,15 +18,7 @@ public class Point {
         return rowNo;
     }
 
-    public void setRowNo(int rowNo) {
-        this.rowNo = rowNo;
-    }
-
     public int getColNo() {
         return colNo;
-    }
-
-    public void setColNo(int colNo) {
-        this.colNo = colNo;
     }
 }

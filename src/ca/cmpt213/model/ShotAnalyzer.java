@@ -1,4 +1,4 @@
-package ca.cmpt213.fortress;
+package ca.cmpt213.model;
 
 /**
  * Shot Analyzer class analyzes the shot which has been made by the user and make the required changes to the game
@@ -8,14 +8,14 @@ package ca.cmpt213.fortress;
  */
 public class ShotAnalyzer {
     public static final int differenceInCaps = 32;
-    Point shotPoint;
-    Cell attackedCell;
-    Board board;
+    private Point shotPoint;
+    private Cell attackedCell;
+    private GameModel gameModel;
 
-    public ShotAnalyzer(Board board, Point target) {
+    public ShotAnalyzer(GameModel gameModel, Point target) {
         shotPoint = target;
-        attackedCell = board.get(target);
-        this.board = board;
+        attackedCell = gameModel.get(target);
+        this.gameModel = gameModel;
     }
 
     public boolean result() {
@@ -40,13 +40,13 @@ public class ShotAnalyzer {
                 currentName += differenceInCaps;
                 attackedCell.setName(currentName);
 
-                int aliveTanks = board.getNumberOfAliveTanks();
+                int aliveTanks = gameModel.getNumberOfAliveTanks();
 
-                board.getListOfTanks().get(tankIndex).decrementRemainingCells();
-                int updatedAliveTanks = board.updateAliveTank();
+                gameModel.getListOfTanks().get(tankIndex).decrementRemainingCells();
+                int updatedAliveTanks = gameModel.updateAliveTank();
 
                 if (aliveTanks != updatedAliveTanks) {
-                    board.setNumberOfAliveTanks(board.getNumberOfAliveTanks() - 1);
+                    gameModel.getField().decrementNoOfAliveTank();
                 }
             }
         }
